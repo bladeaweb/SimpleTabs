@@ -59,7 +59,7 @@ You need insert my html example. And all you need add your id to container of ta
 ```
 
 ### 3.Call the plugin
-Now call the SimpleTabs initializer function, and your tabs is ready.
+Now call the SimpleTabs initializer function, and your tabs are ready.
 
 ```html
 $(".some-class").SimpleTabs();
