@@ -62,7 +62,7 @@ You need insert my html example. And all you need add your id to container of ta
 Now call the SimpleTabs initializer function, and your tabs is ready.
 
 ```html
-$(".some-clase").SimpleTabs();
+$(".some-class").SimpleTabs();
 ```
 
 Or you can set call initializer function to ID container. And you can use tabs options to initializations tabs.
