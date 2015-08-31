@@ -57,6 +57,7 @@ You need insert my html example. And all you need add your id to container of ta
 </div>
 <!-- /Simple tabs -->
 ```
+
 ### 3.Call the plugin
 Now call the SimpleTabs initializer function, and your tabs is ready.
 
@@ -73,3 +74,5 @@ Example a call to initializations of tabs with options:
 ```html
 $('#simple_vertical_tabs').SimpleTabs({start: 2, vertical: true});
 ```
+
+> One interesting moment about my tabs. You can insert any content, in button of tab, or content item of tab. You can create your own stylesheets for it. Special for you, I inserted to project scss files that you can use to create your own themes for SimpleTabs. 
