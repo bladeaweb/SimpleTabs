@@ -66,8 +66,8 @@ $(".some-clase").SimpleTabs();
 
 Or you can set call initializer function to ID container. And you can use tabs options to initializations tabs.
 Now, my tabs has two options:
-1) Start number (start: start number) - default start number 1
-2) Vertical or horizontal tabs (vertical: [true/false]) - default false
+* Start number (start: start number) - default start number 1
+* Vertical or horizontal tabs (vertical: [true/false]) - default false
 
 Example a call to initializations of tabs with options:
 ```html
