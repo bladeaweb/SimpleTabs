@@ -1,0 +1,20 @@
+.simple_tabs {
+  .tabs_buttons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    .tab_button_wrapper {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+  .tabs_contents {
+    &>div {
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+  }
+}

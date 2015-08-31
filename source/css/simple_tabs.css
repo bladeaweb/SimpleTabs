@@ -1,0 +1,16 @@
+.simple_tabs .tabs_buttons {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.simple_tabs .tabs_buttons .tab_button_wrapper {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.simple_tabs .tabs_contents > div {
+  display: none;
+}
+.simple_tabs .tabs_contents > div.active {
+  display: block;
+}

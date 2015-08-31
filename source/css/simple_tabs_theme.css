@@ -1,0 +1,143 @@
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:before, .simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:after, .simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:hover:before, .simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:hover:after, .simple_tabs_horizontal .tabs_buttons .tab_button_wrapper.active:before, .simple_tabs_horizontal .tabs_buttons .tab_button_wrapper.active:after, .simple_tabs_vertical .tabs_buttons .tab_button_wrapper:after, .simple_tabs_vertical .tabs_buttons .tab_button_wrapper:hover:after, .simple_tabs_vertical .tabs_buttons .tab_button_wrapper.active:after {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+/*=======================================*/
+/*=======================================*/
+.simple_tabs_horizontal .tabs_buttons {
+  display: table;
+  width: 100%;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper {
+  position: relative;
+  display: table-cell;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #a30404;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper .tab_button {
+  position: relative;
+  z-index: 1;
+  padding: 20px 25px;
+  display: block;
+  text-decoration: none;
+  color: #a30404;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:before {
+  opacity: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  height: 5px;
+  width: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  background: #a30404;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:after {
+  opacity: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 0;
+  bottom: 0;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  background: rgba(0, 0, 0, 0.05);
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:hover:before {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper:hover:after {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper.active:before {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper.active:after {
+  opacity: 0;
+  width: 100%;
+  top: 100%;
+  height: 0;
+}
+.simple_tabs_horizontal .tabs_buttons .tab_button_wrapper.active .tab_button {
+  cursor: default;
+}
+.simple_tabs_horizontal .tabs_contents > .tab_content.active {
+  padding: 20px 0;
+}
+.simple_tabs_vertical {
+  display: table;
+}
+.simple_tabs_vertical .tabs_buttons {
+  display: table-cell;
+  width: 30%;
+  padding: 0 15px 0 0;
+}
+.simple_tabs_vertical .tabs_buttons .tab_button_wrapper {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #a30404;
+}
+.simple_tabs_vertical .tabs_buttons .tab_button_wrapper .tab_button {
+  position: relative;
+  z-index: 1;
+  padding: 20px 25px;
+  display: block;
+  text-decoration: none;
+  color: #a30404;
+}
+.simple_tabs_vertical .tabs_buttons .tab_button_wrapper:after {
+  opacity: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 100%;
+  background: rgba(0, 0, 0, 0.05);
+}
+.simple_tabs_vertical .tabs_buttons .tab_button_wrapper:hover:after {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.simple_tabs_vertical .tabs_buttons .tab_button_wrapper.active:after {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.simple_tabs_vertical .tabs_buttons .tab_button_wrapper.active .tab_button {
+  cursor: default;
+}
+.simple_tabs_vertical .tabs_contents {
+  display: table-cell;
+  width: 70%;
+  vertical-align: top;
+}
+.simple_tabs_vertical .tabs_contents > .tab_content.active {
+  padding: 15px 0 0 15px;
+}
