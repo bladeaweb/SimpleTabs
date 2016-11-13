@@ -24,9 +24,10 @@ Load jQuery(1.7+) and include Simple Tabs source filese
 ### 2.Set up your HTML
 You need insert my html example. And all you need add your id to container of tabs.
 
+###### Html
 ```html
 <!-- Simple tabs -->
-<div id="some-class">
+<div id="some-id">
     <!-- Simple tabs buttons -->
     <ul>
         <li><a>Tab 1</a></li>
@@ -66,15 +67,18 @@ You need insert my html example. And all you need add your id to container of ta
 ### 3.Call the plugin
 Now call the SimpleTabs initializer function, and your tabs are ready.
 
-```html
-$(".some-class").SimpleTabs();
+###### JavaScript
+```javascript
+$("#some-id").SimpleTabs();
 ```
 
 Or you can set call initializer function to ID container. And you can use tabs options to initializations tabs.
 
 Example a call to initializations of tabs with all options:
+
+###### JavaScript
 ```javascript
-$('#simple_vertical_tabs').SimpleTabs({
+$('.some-class').SimpleTabs({
   start: 1,
   vertical: true,
   mainClass: "simple_tabs",
@@ -131,7 +135,32 @@ containerClass | string | "tabs_contents" | Class name for container of content 
 itemElement | string | "div" | Tag name for an item of container of content of tabs. |
 itemClass | string | "tab_content" | Class name for an item of container of content of tabs. |
 
-### <a id="useAjax"></a>5.Use Ajax
+### <a id="useAjax"></a> 5.Use Ajax
+To use this function, You need add the **data-ajax** attribute with link to data in tag for links of tabs.
+ 
+Example how to use ajax loading for data:
+###### Html
+```html
+<!-- Simple tabs -->
+<div class="some-class">
+    <!-- Simple tabs buttons -->
+    <ul>
+        <li><a data-ajax="your path to data/1.html">Tab 1</a></li>
+        <li><a data-ajax="your path to data/2.html">Tab 2</a></li>
+        <li><a data-ajax="your path to data/3.html">Tab 3</a></li>
+    </ul>
+    <!-- /Simple tabs buttons -->
+    <!-- Simple tabs contents -->
+    <div class="tabs_contents">
+    </div>
+    <!-- Simple tabs contents -->
+</div>
+<!-- /Simple tabs -->
+```
+###### JavaScript
+```javascript
+$(".some-class").SimpleTabs();
+```
 
-
+### Notes
 > One interesting moment about my tabs. You can insert any content, in button of tab, or content item of tab. You can create your own stylesheets for it. Special for you, I inserted to project scss files that you can use to create your own themes for SimpleTabs. 
