@@ -1,0 +1,20 @@
+{
+  "name": "SimpleTabs",
+  "homepage": "https://github.com/bladeaweb/SimpleTabs",
+  "authors": [
+    "Alexander Sharkov <blade.didan@gmail.com>"
+  ],
+  "description": "The most simple way to create tabs on jquery",
+  "main": "simple_tabs.js",
+  "keywords": [
+    "tabs",
+    "jquery tabs",
+    "simple tabs"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
