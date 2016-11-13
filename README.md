@@ -1,7 +1,7 @@
 # Simple Tabs by Alexander Sharkov
 >v.1.1.0
-***
-> #### What's new
+
+#### What's new
 > * Add new options
 > * Cleared js code
 
