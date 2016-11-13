@@ -9,6 +9,7 @@
 ### 1.Getting Started
 Load jQuery(1.7+) and include Simple Tabs source filese
 
+###### Html to head
 ```html
 <!-- Important include -->
 <link rel="stylesheet" href="your path/simple_tabs.css">
@@ -16,7 +17,9 @@ Load jQuery(1.7+) and include Simple Tabs source filese
 <!-- You can include or write your own stylesheet -->
 <link rel="stylesheet" href="your path/simple_tabs_theme.css">
 <!-- /You can include or write your own stylesheet -->
-
+```
+###### Html before close body
+```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="your path/simple_tabs.js"></script>
 ```
