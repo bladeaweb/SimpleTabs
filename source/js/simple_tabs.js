@@ -40,12 +40,12 @@
             tabButtonsLinkClass = options.buttons.linkClass,
             // Content variables
             tabContentContainerClass = options.content.containerClass,
-            tabContenttitemElement = options.content.itemElement,
-            tabContenttItemClass = options.content.itemClass,
+            tabContentItemElement = options.content.itemElement,
+            tabContentItemClass = options.content.itemClass,
             // Start work
             element = this;
 
-        function _init() {
+        function init() {
 
             if (element[0]) {
 
@@ -74,25 +74,25 @@
                           .attr('href', '#' + $(element[i]).attr("id") + tabIdSuffix + parseInt(j + 1))
                           .addClass(tabButtonsLinkClass);
                     }
-                    var contenttContainer = $(element[i]).find("." + tabContentContainerClass),
-                      contenttContainerItem = contenttContainer.children(tabContenttitemElement);
-                    for (var j = 0; j <= contenttContainerItem.length; j++) {
-                        $(contenttContainerItem[j]).attr('id', '' + $(element[i])
+                    var contentContainer = $(element[i]).find("." + tabContentContainerClass),
+                        contentContainerItem = contentContainer.children(tabContentItemElement);
+                    for (var j = 0; j <= contentContainerItem.length; j++) {
+                        $(contentContainerItem[j]).attr('id', '' + $(element[i])
                             .attr("id") + tabIdSuffix + parseInt(j + 1))
-                          .addClass(tabContenttItemClass)
+                            .addClass(tabContentItemClass)
                     }
                     $(buttonsItem).find('.' + tabButtonsLinkClass).click(function () {
-                        _click($(this), $(this).closest('.' + mainClass));
+                        click($(this), $(this).closest('.' + mainClass));
                         return false
                     });
                     if (start_tab > 0) {
-                        _click($(buttonsItem[start_tab - 1]).find('.' + tabButtonsLinkClass), $(element[i]));
+                        click($(buttonsItem[start_tab - 1]).find('.' + tabButtonsLinkClass), $(element[i]));
                     }
                 }
             }
         }
 
-        function _hide(e, tabs) {
+        function hide(e, tabs) {
             if( e[0] ) {
                 $(tabs)
                   .children('.'+tabButtonsContainerClass)
@@ -100,23 +100,23 @@
                   .removeClass(tabActiveClass);
                 $(tabs)
                   .children('.'+tabContentContainerClass)
-                  .children('.'+tabContenttItemClass)
+                  .children('.'+tabContentItemClass)
                   .removeClass(tabActiveClass);
             }
         }
 
-        function _show(e) {
+        function show(e) {
             if( e[0] ) {
                 $(e[0].parentElement).addClass(tabActiveClass);
                 $(e[0].hash).addClass(tabActiveClass);
             }
         }
 
-        function _click(e, tabs) {
-            _hide(e, tabs);
-            _show(e)
+        function click(e, tabs) {
+            hide(e, tabs);
+            show(e)
         }
 
-        _init();
+        init();
     }
 })(jQuery);
