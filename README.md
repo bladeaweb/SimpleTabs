@@ -1,11 +1,9 @@
 # Simple Tabs by Alexander Sharkov
 >v.1.1.0
 
-#### What's new
+### What's new
 > * Add new options
 > * Cleared js code
-
-
 
 ### 1.Getting Started
 Load jQuery(1.7+) and include Simple Tabs source filese
