@@ -4,7 +4,7 @@
 ### What's new
 > * Add new options
 > * Cleared js code
-> * Add lad data in content using ajax ([How to use]())
+> * Add lad data in content using ajax ([How to use](#5use-ajax))
 
 ### 1.Getting Started
 Load jQuery(1.7+) and include Simple Tabs source filese
