@@ -4,6 +4,7 @@
 ### What's new
 > * Add new options
 > * Cleared js code
+> * Add lad data in content using ajax ([How to use]())
 
 ### 1.Getting Started
 Load jQuery(1.7+) and include Simple Tabs source filese
@@ -81,6 +82,7 @@ $('#simple_vertical_tabs').SimpleTabs({
   horizontalClass: "simple_tabs_horizontal",
   tabIdSuffix: "-tab-",
   tabActiveClass: "active",
+  ajaxMessageError: "Sorry! No data to load :(",
   buttons: {
       containerElement: "ul",
       containerClass: "tabs_buttons",
@@ -108,6 +110,7 @@ verticalClass | string | "simple_tabs_vertical" | Class name for container of ta
 horizontalClass | string | "simple_tabs_horizontal" | Class name for container of tabs, when **vertical** option is ***false***. |
 tabIdSuffix | string | "-tab-" | suffix is necessary to create ids for the content items and links in the tabs. |
 tabActiveClass | string | "active" | Class name for the active tab. |
+ajaxMessageError | string | "Sorry! No data to load :(" | Text of message, when ajax can't load data. |
 buttons | object | {...} | Option contains a object with several options. Look options list in [Buttons options table](#buttonOptions)  | 
 content | object | {...} | Option contains a object with several options. Look options list in [Content options table](#buttonOptions)  | 
 
@@ -127,5 +130,8 @@ Option | Type | Default | Description |
 containerClass | string | "tabs_contents" | Class name for container of content of tabs. |
 itemElement | string | "div" | Tag name for an item of container of content of tabs. |
 itemClass | string | "tab_content" | Class name for an item of container of content of tabs. |
+
+### 5.Use Ajax
+
 
 > One interesting moment about my tabs. You can insert any content, in button of tab, or content item of tab. You can create your own stylesheets for it. Special for you, I inserted to project scss files that you can use to create your own themes for SimpleTabs. 

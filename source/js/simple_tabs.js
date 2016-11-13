@@ -8,6 +8,7 @@
             horizontalClass: "simple_tabs_horizontal",
             tabIdSuffix: "-tab-",
             tabActiveClass: "active",
+            ajaxMessageError: "Sorry! No data to load :(",
             buttons: {
                 containerElement: "ul",
                 containerClass: "tabs_buttons",
@@ -27,6 +28,7 @@
             vertical = options.vertical,
             tabIdSuffix = options.tabIdSuffix,
             tabActiveClass = options.tabActiveClass,
+            ajaxMessageError = options.ajaxMessageError,
             // Main classes
             mainClass = options.mainClass,
             verticalClass = options.verticalClass,
@@ -59,7 +61,7 @@
 
                 if (vertical) {
                     element.addClass(verticalClass);
-                } else {
+                }else{
                     element.addClass(horizontalClass);
                 }
 
@@ -67,15 +69,22 @@
                     var buttonsContainer = $(element[i]).find(tabButtonsContainerElement);
                     $(buttonsContainer).addClass(tabButtonsContainerClass);
                     var buttonsItem = $(buttonsContainer).find(tabButtonsItemElement);
+                    var contentContainer = $(element[i]).find("." + tabContentContainerClass),
+                      contentContainerItem = contentContainer.children(tabContentItemElement);
                     for (var j = 0; j <= buttonsItem.length; j++) {
                         $(buttonsItem[j])
                           .addClass(tabButtonsItemClass)
-                          .children(tabButtonsLinkElement)
+                          .find(tabButtonsLinkElement)
                           .attr('href', '#' + $(element[i]).attr("id") + tabIdSuffix + parseInt(j + 1))
                           .addClass(tabButtonsLinkClass);
+                        if($(buttonsItem[j]).find(tabButtonsLinkElement).attr('data-ajax')){
+                            $(contentContainer).append('<'+tabContentItemElement
+                              +' data-ajax="'+$(buttonsItem[j]).find(tabButtonsLinkElement).attr('data-ajax')+'">'
+                              +'</'+tabContentItemElement+'>');
+                        }
                     }
-                    var contentContainer = $(element[i]).find("." + tabContentContainerClass),
-                        contentContainerItem = contentContainer.children(tabContentItemElement);
+                    contentContainerItem = contentContainer.children(tabContentItemElement);
+                    console.log(contentContainerItem.length);
                     for (var j = 0; j <= contentContainerItem.length; j++) {
                         $(contentContainerItem[j]).attr('id', '' + $(element[i])
                             .attr("id") + tabIdSuffix + parseInt(j + 1))
@@ -93,15 +102,21 @@
         }
 
         function hide(e, tabs) {
+            var tabs_contant = $(tabs)
+              .children('.'+tabContentContainerClass)
+              .children('.'+tabContentItemClass);
+            var tabs_tab = $(tabs)
+              .children('.'+tabButtonsContainerClass)
+              .find('.'+tabButtonsItemClass)
+              .removeClass(tabActiveClass);
             if( e[0] ) {
-                $(tabs)
-                  .children('.'+tabButtonsContainerClass)
-                  .find('.'+tabButtonsItemClass)
-                  .removeClass(tabActiveClass);
-                $(tabs)
-                  .children('.'+tabContentContainerClass)
-                  .children('.'+tabContentItemClass)
-                  .removeClass(tabActiveClass);
+                tabs_tab.removeClass(tabActiveClass);
+                for(var i=0; i < tabs_contant.length; i++){
+                    $(tabs_contant[i]).removeClass(tabActiveClass);
+                    if($(tabs_contant[i]).attr('data-ajax')){
+                        $(tabs_contant[i]).empty()
+                    }
+                }
             }
         }
 
@@ -109,6 +124,13 @@
             if( e[0] ) {
                 $(e[0].parentElement).addClass(tabActiveClass);
                 $(e[0].hash).addClass(tabActiveClass);
+                if($(e[0].hash).attr('data-ajax')){
+                    $.get( $(e[0].hash).attr('data-ajax'), function (data){
+                        $(e[0].hash).html(data);
+                    }, "html").fail(function() {
+                        $(e[0].hash).html(ajaxMessageError);
+                    });
+                }
             }
         }
 
