@@ -2,55 +2,143 @@
     $.fn.SimpleTabs = function(options) {
         options = $.extend({
             start: 1,
-            vertical: false
+            vertical: false,
+            mainClass: "simple_tabs",
+            verticalClass: "simple_tabs_vertical",
+            horizontalClass: "simple_tabs_horizontal",
+            tabIdSuffix: "-tab-",
+            tabActiveClass: "active",
+            ajaxMessageError: "Sorry! No data to load :(",
+            buttons: {
+                containerElement: "ul",
+                containerClass: "tabs_buttons",
+                itemElement: "li",
+                itemClass: "tab_button_wrapper",
+                linkElement: "a",
+                linkClass: "tab_button"
+            },
+            content: {
+                containerClass: "tabs_contents",
+                itemElement: "div",
+                itemClass: "tab_content"
+            }
         }, options);
 
-        var start_tab = options.start;
-        var vertical = options.vertical;
-        var element = this;
-        var i;
+        var start_tab = options.start,
+            vertical = options.vertical,
+            tabIdSuffix = options.tabIdSuffix,
+            tabActiveClass = options.tabActiveClass,
+            ajaxMessageError = options.ajaxMessageError,
+            // Main classes
+            mainClass = options.mainClass,
+            verticalClass = options.verticalClass,
+            horizontalClass = options.horizontalClass,
+            // Buttons variables
+            tabButtonsContainerElement = options.buttons.containerElement,
+            tabButtonsContainerClass = options.buttons.containerClass,
+            tabButtonsItemElement = options.buttons.itemElement,
+            tabButtonsItemClass = options.buttons.itemClass,
+            tabButtonsLinkElement = options.buttons.linkElement,
+            tabButtonsLinkClass = options.buttons.linkClass,
+            // Content variables
+            tabContentContainerClass = options.content.containerClass,
+            tabContentItemElement = options.content.itemElement,
+            tabContentItemClass = options.content.itemClass,
+            // Start work
+            element = this;
 
-        $(element).addClass('simple_tabs');
+        function init() {
 
-        if(vertical == true) {
-            $(element).addClass('simple_tabs_vertical');
-        }else{
-            $(element).addClass('simple_tabs_horizontal');
-        }
+            if (element[0]) {
 
-        $(element).children('ul').addClass('tabs_buttons');
+                $(element).addClass(mainClass);
 
-        $(element).children('ul').children('li').each(function(i){
-            i++;
-            $(this).addClass('tab_button_wrapper');
-            $(this).children('a').attr('href', '#' + $(element).attr("id") + '-tab-' + i);
-            $(this).children('a').addClass('tab_button');
-        });
-        $(element).children('.tabs_contents').children('div').each(function(i){
-            i++;
-            $(this).attr('id', '' + $(element).attr("id") + '-tab-' + i);
-            $(this).addClass('tab_content');
-        });
+                if (!element.attr("id")) {
+                    for (var i = 0; i < element.length; i++) {
+                        $(element[i]).attr("id", mainClass + '-' + parseInt(i + 1));
+                    }
+                }
 
-        $(element).children('.tabs_buttons').children('.tab_button_wrapper').children('.tab_button').click(function(e){
-            if(!$(this).parent('li').hasClass('active')){
-                simple_tab_click_item(e);
+                if (vertical) {
+                    element.addClass(verticalClass);
+                }else{
+                    element.addClass(horizontalClass);
+                }
+
+                for (var i = 0; i < element.length; i++) {
+                    var buttonsContainer = $(element[i]).find(tabButtonsContainerElement);
+                    $(buttonsContainer).addClass(tabButtonsContainerClass);
+                    var buttonsItem = $(buttonsContainer).find(tabButtonsItemElement);
+                    var contentContainer = $(element[i]).find("." + tabContentContainerClass),
+                      contentContainerItem = contentContainer.children(tabContentItemElement);
+                    for (var j = 0; j <= buttonsItem.length; j++) {
+                        $(buttonsItem[j])
+                          .addClass(tabButtonsItemClass)
+                          .find(tabButtonsLinkElement)
+                          .attr('href', '#' + $(element[i]).attr("id") + tabIdSuffix + parseInt(j + 1))
+                          .addClass(tabButtonsLinkClass);
+                        if($(buttonsItem[j]).find(tabButtonsLinkElement).attr('data-ajax')){
+                            $(contentContainer).append('<'+tabContentItemElement
+                              +' data-ajax="'+$(buttonsItem[j]).find(tabButtonsLinkElement).attr('data-ajax')+'">'
+                              +'</'+tabContentItemElement+'>');
+                        }
+                    }
+                    contentContainerItem = contentContainer.children(tabContentItemElement);
+                    console.log(contentContainerItem.length);
+                    for (var j = 0; j <= contentContainerItem.length; j++) {
+                        $(contentContainerItem[j]).attr('id', '' + $(element[i])
+                            .attr("id") + tabIdSuffix + parseInt(j + 1))
+                            .addClass(tabContentItemClass)
+                    }
+                    $(buttonsItem).find('.' + tabButtonsLinkClass).click(function () {
+                        click($(this), $(this).closest('.' + mainClass));
+                        return false
+                    });
+                    if (start_tab > 0) {
+                        click($(buttonsItem[start_tab - 1]).find('.' + tabButtonsLinkClass), $(element[i]));
+                    }
+                }
             }
-            return false;
-        });
-
-        $(element).children('.tabs_buttons').children('.tab_button_wrapper:nth-child(' + start_tab + ')').children('.tab_button').click();
-
-        function simple_tab_click_item(e){
-            $($(e)[0].currentTarget).parent().parent().children('.tab_button_wrapper').each(function(){
-                $(this).removeClass('active');
-            });
-            $($(e)[0].currentTarget).parent('.tab_button_wrapper').addClass('active');
-            $($(e)[0].currentTarget).parent().parent().parent().children('.tabs_contents').children('.tab_content').each(function(){
-                $(this).removeClass('active');
-            });
-            $(''+$(e)[0].currentTarget.hash+'').addClass('active');
-            return false;
         }
+
+        function hide(e, tabs) {
+            var tabs_contant = $(tabs)
+              .children('.'+tabContentContainerClass)
+              .children('.'+tabContentItemClass);
+            var tabs_tab = $(tabs)
+              .children('.'+tabButtonsContainerClass)
+              .find('.'+tabButtonsItemClass)
+              .removeClass(tabActiveClass);
+            if( e[0] ) {
+                tabs_tab.removeClass(tabActiveClass);
+                for(var i=0; i < tabs_contant.length; i++){
+                    $(tabs_contant[i]).removeClass(tabActiveClass);
+                    if($(tabs_contant[i]).attr('data-ajax')){
+                        $(tabs_contant[i]).empty()
+                    }
+                }
+            }
+        }
+
+        function show(e) {
+            if( e[0] ) {
+                $(e[0].parentElement).addClass(tabActiveClass);
+                $(e[0].hash).addClass(tabActiveClass);
+                if($(e[0].hash).attr('data-ajax')){
+                    $.get( $(e[0].hash).attr('data-ajax'), function (data){
+                        $(e[0].hash).html(data);
+                    }, "html").fail(function() {
+                        $(e[0].hash).html(ajaxMessageError);
+                    });
+                }
+            }
+        }
+
+        function click(e, tabs) {
+            hide(e, tabs);
+            show(e)
+        }
+
+        init();
     }
 })(jQuery);
