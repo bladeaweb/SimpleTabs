@@ -4,7 +4,7 @@
 ### What's new
 > * Add new options
 > * Cleared js code
-> * Add lad data in content using ajax ([How to use](#5use-ajax))
+> * Add lad data in content using ajax ([How to use](#useAjax))
 
 ### 1.Getting Started
 Load jQuery(1.7+) and include Simple Tabs source filese
@@ -131,7 +131,7 @@ containerClass | string | "tabs_contents" | Class name for container of content 
 itemElement | string | "div" | Tag name for an item of container of content of tabs. |
 itemClass | string | "tab_content" | Class name for an item of container of content of tabs. |
 
-### 5.Use Ajax
+### <a id="useAjax"></a>5.Use Ajax
 
 
 > One interesting moment about my tabs. You can insert any content, in button of tab, or content item of tab. You can create your own stylesheets for it. Special for you, I inserted to project scss files that you can use to create your own themes for SimpleTabs. 
