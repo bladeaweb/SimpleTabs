@@ -1,9 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic);
+.main-menu .item:before, .main-menu .item:after, .main-menu .item:hover:before, .main-menu .item:hover:after, .main-menu .item.active:before, .main-menu .item.active:after {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+/*=======================================*/
+/*=======================================*/
 * {
   margin: 0;
   padding: 0;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -22,4 +28,94 @@ body {
 
 p {
   margin-bottom: 15px;
+}
+
+.header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.main-menu {
+  margin: 0 0 40px 0;
+  display: table;
+  width: 100%;
+}
+
+.main-menu .item {
+  list-style: none;
+  margin: 0;
+  position: relative;
+  display: table-cell;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: #0bb6fd;
+}
+
+.main-menu .item .link {
+  position: relative;
+  z-index: 1;
+  padding: 5px 10px;
+  display: block;
+  text-decoration: none;
+  color: #0bb6fd;
+}
+
+.main-menu .item:before {
+  opacity: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  background: #0bb6fd;
+}
+
+.main-menu .item:after {
+  opacity: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 0;
+  bottom: 0;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  background: rgba(11, 182, 253, 0.05);
+}
+
+.main-menu .item:hover:before {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.main-menu .item:hover:after {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.main-menu .item.active:before {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.main-menu .item.active:after {
+  opacity: 0;
+  width: 100%;
+  top: 100%;
+  height: 0;
+}
+
+.main-menu .item.active .tab_button {
+  cursor: default;
 }
