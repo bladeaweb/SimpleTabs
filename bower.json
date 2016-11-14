@@ -4,8 +4,11 @@
   "authors": [
     "Alexander Sharkov <blade.didan@gmail.com>"
   ],
-  "description": "The most simple way to create tabs on jquery",
-  "main": "simple_tabs.js",
+  "description": "The most simple way to create tabs on jquery to your web page",
+  "main": [
+    "source/css/simple_tabs.css",
+    "source/js/simple_tabs.js"
+  ],
   "keywords": [
     "tabs",
     "jquery tabs",
@@ -18,5 +21,6 @@
     "bower_components"
   ],
   "dependencies": {
+    "jquery": "= 2.1.4"
   }
 }
