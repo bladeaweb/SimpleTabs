@@ -16,7 +16,7 @@
     "jquery tabs"
   ],
   "author": "Alexander Sharkov <blade.didan@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bladeaweb/SimpleTabs/issues"
   },
