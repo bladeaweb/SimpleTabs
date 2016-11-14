@@ -151,7 +151,7 @@
 
     function click(e, tabs) {
       if (typeof callBeforeChange === "function") {
-        callBeforeChange.apply(this);
+        callBeforeChange.apply(tabs);
       } else {
         if (callBeforeChange != null) {
           console.log("Your callback callBeforeChange is not a function")
@@ -160,7 +160,7 @@
       hide(e, tabs);
       show(e);
       if (typeof callAfterChange === "function") {
-        callAfterChange.apply(this);
+        callAfterChange.apply(tabs);
       } else {
         if (callAfterChange != null) {
           console.log("Your callback callAfterChange is not a function")

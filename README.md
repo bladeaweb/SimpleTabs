@@ -1,13 +1,27 @@
 # Simple Tabs by Alexander Sharkov
->v.1.1.0
+>v.1.1.1
+### What's new
+> * Add callbacks
 
+>v.1.1.0
 ### What's new
 > * Add new options
 > * Cleared js code
 > * Add lad html data in content using ajax ([How to use](#useAjax))
 
 ### 1.Getting Started
-Load jQuery(1.7+) and include Simple Tabs source filese
+* Download source
+###### If you use Bower
+```
+    bower install SimpleTabs -save
+```
+###### If you use NPM
+```
+    npm install simpletabs
+```
+* Load jQuery(1.7+) 
+* Include source files of SimpleTabs into your project
+* And read this manual to include tabs to your project
 
 ###### Html to head
 ```html
@@ -102,6 +116,10 @@ $('.some-class').SimpleTabs({
       containerClass: "tabs_contents",
       itemElement: "div",
       itemClass: "tab_content"
+  },
+  callbacks: {
+    callBeforeChange: function() {alert('alert text');},
+    callAfterChange: function() {alert('alert text');}
   }
 });
 ```
@@ -120,6 +138,7 @@ tabActiveClass | string | "active" | Class name for the active tab. |
 ajaxMessageError | string | "Sorry! No data to load :(" | Text of message, when ajax can't load data. |
 buttons | object | {...} | Option contains a object with several options. Look options list in [Buttons options table](#buttonOptions)  | 
 content | object | {...} | Option contains a object with several options. Look options list in [Content options table](#buttonOptions)  | 
+callbacks | object | {...} | Option contains a object with several options. Look options list in [Callbacks options table](#callbacksOptions)  | 
 
 #### <a id="buttonOptions"></a> Buttons options
 Option | Type | Default | Description |
@@ -137,6 +156,24 @@ Option | Type | Default | Description |
 containerClass | string | "tabs_contents" | Class name for container of content of tabs. |
 itemElement | string | "div" | Tag name for an item of container of content of tabs. |
 itemClass | string | "tab_content" | Class name for an item of container of content of tabs. |
+
+#### <a id="callbacksOptions"></a> Callbacks options
+Option | Type | Default | Description |
+------ | ---- | ------- | ----------- |
+callBeforeChange | function | null | Give to you options to change other scripts or DOM elements before that a current tab will change to new. |
+callAfterChange | function | null | Give to you options to change other scripts or DOM elements after that a current tab changed to new. |
+
+Example, how to use callbacks: 
+###### JavaScript
+```javascript
+$(".some-class").SimpleTabs({
+  callbacks: {
+      callBeforeChange: function() {alert('alert text');},
+      callAfterChange: function() {alert('alert text');}
+  }
+});
+```
+
 
 ### <a id="useAjax"></a> 5.Use Ajax
 To use this function, You need add the **data-ajax** attribute with link to data in tag for links of tabs.
