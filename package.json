@@ -4,7 +4,7 @@
   "description": "The most simple way to create tabs on jquery to your web page",
   "main": "source/js/simple_tab.js",
   "scripts": {
-    "test": "demo\\simple_tabs_vertical.html"
+    "test": "http://bladeaweb.github.io/SimpleTabs/"
   },
   "repository": {
     "type": "git",
