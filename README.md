@@ -1,10 +1,13 @@
 # Simple Tabs by Alexander Sharkov
+
 >v.1.1.1
+
 ### What's new
 > * Add callbacks
 > * Add online Demo
 
 >v.1.1.0
+
 ### What's new
 > * Add new options
 > * Cleared js code
