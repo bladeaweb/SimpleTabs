@@ -15,6 +15,7 @@ v.1.1.0
 
 ### 1.Getting Started
 * Download source
+
 ###### If you use Bower
 ```
     bower install SimpleTabs -save
