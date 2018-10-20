@@ -1,5 +1,10 @@
 # Simple Tabs by Alexander Sharkov
 
+v.1.1.2
+### What's new
+> * Added tabButtonTitleAttribute for automatically creates tabs link buttons.
+> * Fixed issue including list items into tabs content.
+
 v.1.1.1
 ### What's new
 > * Add callbacks
@@ -120,7 +125,8 @@ $('.some-class').SimpleTabs({
   content: {
       containerClass: "tabs_contents",
       itemElement: "div",
-      itemClass: "tab_content"
+      itemClass: "tab_content",
+      tabButtonTitleAttribute: "data-tab-title"
   },
   callbacks: {
     callBeforeChange: function() {alert('alert text');},
@@ -161,6 +167,7 @@ Option | Type | Default | Description |
 containerClass | string | "tabs_contents" | Class name for container of content of tabs. |
 itemElement | string | "div" | Tag name for an item of container of content of tabs. |
 itemClass | string | "tab_content" | Class name for an item of container of content of tabs. |
+tabButtonTitleAttribute | string | "data-tab-title" | Attribute name with tab links text for creation tab buttons automatically. |
 
 #### <a id="callbacksOptions"></a> Callbacks options
 Option | Type | Default | Description |

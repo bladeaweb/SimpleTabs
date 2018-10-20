@@ -28,7 +28,8 @@
       content: {
         containerClass: "tabs_contents",
         itemElement: "div",
-        itemClass: "tab_content"
+        itemClass: "tab_content",
+        tabButtonTitleAttribute: "data-tab-title"
       },
       callbacks: {
         callBeforeChange: null,
@@ -56,6 +57,7 @@
       tabContentContainerClass = options.content.containerClass,
       tabContentItemElement = options.content.itemElement,
       tabContentItemClass = options.content.itemClass,
+      tabButtonTitleAttribute = options.content.tabButtonTitleAttribute,
       // CallBacks
       callBeforeChange = options.callbacks.callBeforeChange,
       callAfterChange = options.callbacks.callAfterChange,
@@ -64,7 +66,7 @@
 
     function init() {
 
-      if (element[0]) {
+      if (element.length > 0) {
 
         $(element).addClass(mainClass);
 
@@ -81,11 +83,21 @@
         }
 
         for (var i = 0; i < element.length; i++) {
-          var buttonsContainer = $(element[i]).find(tabButtonsContainerElement);
-          $(buttonsContainer).addClass(tabButtonsContainerClass);
+          var buttonsContainer = $(element[i]).find(tabButtonsContainerElement+'.'+tabButtonsContainerClass),
+              contentContainer = $(element[i]).find("." + tabContentContainerClass),
+              contentContainerItem = contentContainer.children(tabContentItemElement);
+
+          if (buttonsContainer.length === 0 && contentContainerItem.length > 0) {
+            $(element[i]).prepend('<'+tabButtonsContainerElement+' class="'+tabButtonsContainerClass+'"></'+tabButtonsContainerElement+'>');
+            buttonsContainer = $(element[i]).find(tabButtonsContainerElement+'.'+tabButtonsContainerClass);
+            for (var j = 0; j <= contentContainerItem.length; j++) {
+              if ($(contentContainerItem[j]).attr(tabButtonTitleAttribute)) {
+                $(buttonsContainer).append('<'+tabButtonsItemElement+'><'+tabButtonsLinkElement+'>'+$(contentContainerItem[j]).attr(tabButtonTitleAttribute)+'</'+tabButtonsLinkElement+'></'+tabButtonsItemElement+'>');
+              }
+            }
+          }
+
           var buttonsItem = $(buttonsContainer).find(tabButtonsItemElement);
-          var contentContainer = $(element[i]).find("." + tabContentContainerClass),
-            contentContainerItem = contentContainer.children(tabContentItemElement);
           for (var j = 0; j <= buttonsItem.length; j++) {
             $(buttonsItem[j])
               .addClass(tabButtonsItemClass)
@@ -100,9 +112,9 @@
           }
           contentContainerItem = contentContainer.children(tabContentItemElement);
           for (var j = 0; j <= contentContainerItem.length; j++) {
-            $(contentContainerItem[j]).attr('id', '' + $(element[i])
-                .attr("id") + tabIdSuffix + parseInt(j + 1))
-              .addClass(tabContentItemClass)
+            $(contentContainerItem[j])
+              .attr('id', '' + $(element[i]).attr("id") + tabIdSuffix + parseInt(j + 1))
+              .addClass(tabContentItemClass);
           }
           $(buttonsItem).find('.' + tabButtonsLinkClass).click(function () {
             click($(this), $(this).closest('.' + mainClass));
